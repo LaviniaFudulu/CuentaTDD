@@ -9,12 +9,14 @@ public class Cuenta {
     protected String mNumero;
     protected String nTitular;
     protected List<Movimiento> mMovimientos;
+    protected double saldo;
 
     public Cuenta(String numero, String titular)
     {
         this.mNumero=numero;
         this.nTitular=titular;
         mMovimientos=new ArrayList<>();
+        this.saldo=0;
     }
 
      private static class Movimiento {
@@ -33,16 +35,17 @@ public class Cuenta {
      
      
     void ingresar(double x) throws Exception {
-        
+        saldo=saldo+x;
         if(x<0){
            throw new Exception("No se puede ingresar una cantidad negativa"); 
         }
-        Movimiento m=new Movimiento(1111, "noseque");
+        Movimiento m=new Movimiento(x, "noseque");
         this.mMovimientos.add(m);
        
     }
 
     void retirar(double x) throws Exception {
+        saldo=saldo-x;
         if(x<=0){
            throw new Exception("No se puede retirar una cantidad negativa"); 
         }
@@ -50,13 +53,13 @@ public class Cuenta {
             throw new Exception("Saldo insuficionte");
         }
         
-        Movimiento m=new Movimiento(1111, "noseque");
+        Movimiento m=new Movimiento(-x, "noseque");
         this.mMovimientos.add(m);
         
     }
 
-     static double getSaldo() {
-        return 200.0;
+     public double getSaldo() {
+        return saldo;
     }
      
   

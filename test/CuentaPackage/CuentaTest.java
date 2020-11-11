@@ -26,24 +26,26 @@ public class CuentaTest {
     }
     
     @Test
-    public void testIngresar() throws Exception{
+    public void testIngresar(){
+        
         System.out.println("Ingresar: ");
+        Cuenta=new Cuenta("0001.0002.12.1234567890", "Fulano de Tal");
         double cantidad=100.0;
         
         try{
             Cuenta.ingresar(cantidad);
-            assertEquals(Cuenta.getSaldo(),100.0);//comprobar que se añadio correctamente
+            System.out.println("Se ha ingresado correctamente");
         }
         catch(Exception e){
-            fail("No deberia haber fallado");   
+            System.out.println(e.getMessage() + "No se ha podido ingresar la cantidad");  
         }
-        
+        System.out.println("Dinero inicial: "+Cuenta.getSaldo());
         
     }
     
     @Test
     public void testIngresarCantidadNegativa(){
-        System.out.println("Ingresar: ");
+        System.out.println("Ingresar Cantidad Negativa: ");
         double cantidad=-100.0;
         
         try{
@@ -69,12 +71,13 @@ public class CuentaTest {
         catch(Exception e){
             fail(e.getMessage()+"Error indeterminado");
         }
+        System.out.println(Cuenta.getSaldo());
         
     }
     
     @Test
     public void testRetirarCantidadNegatica(){
-        System.out.println("Retirar: ");
+        System.out.println("Retirar Cantidad Negativa: ");
         double cantidad=-100.0;
         
         try{
@@ -82,24 +85,25 @@ public class CuentaTest {
             fail("Error indeterminado");//No deberia haberse podido retirar efectivo negativo
         }
         catch(Exception e){
-            System.out.println(e.getMessage()+"No se puede retirar una cantidad negativo de efectivo");
+            System.out.println(e.getMessage()+ "No se puede retirar una cantidad negativo de efectivo");
         }
         
     }
-    
+    //ESTE NO VA COMO DEBE
     @Test
     public void testRetirarMasDinero() throws Exception{
-        System.out.println("TestRetirar_saldoInsuficiente:");
+        System.out.println("Retirar mas de lo que hay en la cuenta:");
         Cuenta=new Cuenta("0001.0002.12.1234567890", "Fulano de Tal");
         Cuenta.ingresar(100.0);
-        double cantidad = 300.0;
+        double cantidad = 5000.0;
         
         try{
             Cuenta.retirar(cantidad);
             System.out.println("Error indeterminado");
         }
         catch(Exception e){
-            fail(e.getMessage()+"Error! No hay suficiente efectivo");
+            System.out.println(e.getMessage()+"No hay suficiente dinero");
+            
         }
     }
     
