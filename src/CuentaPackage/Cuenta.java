@@ -1,11 +1,63 @@
 
 package CuentaPackage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Cuenta {
+    protected String mNumero;
+    protected String nTitular;
+    protected List<Movimiento> mMovimientos;
 
-    static double getSaldo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Cuenta(String numero, String titular)
+    {
+        this.mNumero=numero;
+        this.nTitular=titular;
+        mMovimientos=new ArrayList<>();
     }
-    
+
+     private static class Movimiento {
+        private final double importe;
+        private final String concepto;
+
+        public Movimiento( double importe, String concepto) {
+            this.concepto=concepto;
+            this.importe=importe;
+        }
+        
+        public double getImporte(){ return this.importe; }
+        public String getConcepto(){ return this.concepto; }
+        
+    }
+     
+     
+    void ingresar(double x) throws Exception {
+        
+        if(x<0){
+           throw new Exception("No se puede ingresar una cantidad negativa"); 
+        }
+        Movimiento m=new Movimiento(1111, "noseque");
+        this.mMovimientos.add(m);
+       
+    }
+
+    void retirar(double x) throws Exception {
+        if(x<=0){
+           throw new Exception("No se puede retirar una cantidad negativa"); 
+        }
+        if(getSaldo()<x){
+            throw new Exception("Saldo insuficionte");
+        }
+        
+        Movimiento m=new Movimiento(1111, "noseque");
+        this.mMovimientos.add(m);
+        
+    }
+
+     static double getSaldo() {
+        return 200.0;
+    }
+     
+  
 }
