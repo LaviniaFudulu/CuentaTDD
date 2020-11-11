@@ -16,7 +16,7 @@ public class Cuenta {
         this.mNumero=numero;
         this.nTitular=titular;
         mMovimientos=new ArrayList<>();
-        this.saldo=0;
+        
     }
 
      private static class Movimiento {

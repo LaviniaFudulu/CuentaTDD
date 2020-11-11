@@ -39,7 +39,9 @@ public class CuentaTest {
         catch(Exception e){
             System.out.println(e.getMessage() + "No se ha podido ingresar la cantidad");  
         }
-        System.out.println("Dinero inicial: "+Cuenta.getSaldo());
+        assertEquals(Cuenta.getSaldo(),100.0);
+        
+        //System.out.println("Dinero inicial: "+Cuenta.getSaldo());
         
     }
     
@@ -71,7 +73,7 @@ public class CuentaTest {
         catch(Exception e){
             fail(e.getMessage()+"Error indeterminado");
         }
-        System.out.println(Cuenta.getSaldo());
+        //System.out.println(Cuenta.getSaldo());
         
     }
     
@@ -89,7 +91,7 @@ public class CuentaTest {
         }
         
     }
-    //ESTE NO VA COMO DEBE
+    
     @Test
     public void testRetirarMasDinero() throws Exception{
         System.out.println("Retirar mas de lo que hay en la cuenta:");
